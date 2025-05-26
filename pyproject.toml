@@ -43,7 +43,9 @@ Changelog = "https://github.com/yingxingcheng/castepkit/CHANGELOG.md"
 
 [project.scripts]
 castepkit-shg = "castepkit.shg:main"
-castepkit-dens = "castepkit.weighted_dens:main"
+castepkit-dens0 = "castepkit.weighted_dens:main_single"
+castepkit-dens1 = "castepkit.weighted_dens:main_both"
+castepkit-dens = "castepkit.weighted_dens:main_all"
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
