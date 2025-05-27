@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [0.0.6] - 2025-05-27
+
+### Added
+
+- Tests for `run_shg` and `run_weighted_den`
+
 ## [0.0.5] - 2025-05-27
 
 ### Fixed
