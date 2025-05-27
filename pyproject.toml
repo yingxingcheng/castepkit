@@ -45,6 +45,8 @@ Changelog = "https://github.com/yingxingcheng/castepkit/CHANGELOG.md"
 [project.scripts]
 castepkit-shg = "castepkit.wrappers.shg:main"
 castepkit-dens = "castepkit.wrappers.weighted_dens:main"
+castepkit-cut = "castepkit.wrappers.atom_cutting:main"
+castepkit-ome = "castepkit.wrappers.ome:main"
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
