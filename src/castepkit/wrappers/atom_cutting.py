@@ -48,7 +48,6 @@ def run_atom_cutting(
         f"{prefix}.cutatom_check",
         f"{prefix}_den.grd",
         f"{prefix}.castep",
-        f"{prefix}.cst_ome",
         f"{prefix}.castep_bin",
     ]
     check_files_exist(expected_outputs, label="atom-cutting output files")

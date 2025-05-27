@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [0.0.5] - 2025-05-27
+
+### Fixed
+
+- Remove the output dependencies of `atom_cutting.py`.
+
 ## [0.0.4] - 2025-05-27
 
 ### Fixed
