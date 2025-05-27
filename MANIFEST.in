@@ -1,4 +1,4 @@
 include README.rst
 include LICENSE.txt
-include tests/data/*.*
+# include tests/data/*.*
 include src/castepkit/data/*.*
