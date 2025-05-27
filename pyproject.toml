@@ -10,7 +10,7 @@ authors = [
 maintainers = [
     {name='YingXing Cheng', email='yxcheng2buaa@gamil.com'}]
 keywords = ['Abinit calculations', 'Computational chemistry']
-description = "Tools for preparing inputs for Gaussian program."
+description = "Tools for processing outputs from CASTEP program."
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
@@ -42,10 +42,8 @@ Repository = 'https://github.com/yingxingcheng/castepkit'
 Changelog = "https://github.com/yingxingcheng/castepkit/CHANGELOG.md"
 
 [project.scripts]
-castepkit-shg = "castepkit.shg:main"
-castepkit-dens0 = "castepkit.weighted_dens:main_single"
-castepkit-dens1 = "castepkit.weighted_dens:main_both"
-castepkit-dens = "castepkit.weighted_dens:main_all"
+castepkit-shg = "castepkit.wrappers.shg:main"
+castepkit-dens = "castepkit.wrappers.weighted_dens:main"
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.

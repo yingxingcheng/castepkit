@@ -1,8 +1,8 @@
-# GAUSSPY
+# CASTEPKIT
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3.10/)
 
 
-[`GAUSSPY`](https://github.com/yingxingcheng/castepkit) is a Python package that process outputs of CASTEP program.
+[`CASTEPKIT`](https://github.com/yingxingcheng/castepkit) is a Python package that processes outputs of CASTEP program.
 
 ## License
 
