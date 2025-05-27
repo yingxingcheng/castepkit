@@ -13,7 +13,7 @@ keywords = ['Abinit calculations', 'Computational chemistry']
 description = "Tools for processing outputs from CASTEP program."
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",

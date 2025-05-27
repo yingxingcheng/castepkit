@@ -1,6 +1,6 @@
 # CASTEPKIT
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![GPLv3 License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 [`castepkit`](https://github.com/yingxingcheng/castepkit) is a Python package that provides a unified CLI and programmatic interface for post-processing and analyzing output files from the [CASTEP](https://www.castep.org/) first-principles simulation software. It provides wrappers for multiple CASTEP auxiliary programs such as `NewSHG_ZY-XTIPC.x`, `weighted_den.x`, and supports seamless integration of additional tools like `atom_cutting_impi_XTIPC`, `calculate_ome_impi_XTIPC`, and more.
