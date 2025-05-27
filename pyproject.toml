@@ -28,7 +28,8 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-    "importlib_resources",
+    "toml",            # for config file loading
+    "platformdirs",    # for OS-specific config paths
 ]
 dynamic = ['version']
 

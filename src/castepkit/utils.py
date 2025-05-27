@@ -1,12 +1,19 @@
 import subprocess
 from pathlib import Path
 
+from castepkit.config import get_exec_path, get_nproc, use_mpi
+
 __all__ = ["run_program", "check_files_exist"]
 
 
-def run_program(executable, input_str, args=None):
-    """Run a program with stdin input and return stdout, stderr."""
-    cmd = [executable] + (args or [])
+def run_program(prog_key, input_str, args=None):
+    """Run an external program with optional MPI and input."""
+    exe = get_exec_path(prog_key)
+    cmd = [exe] + (args or [])
+
+    if use_mpi():
+        cmd = ["mpirun", "-n", str(get_nproc())] + cmd
+
     result = subprocess.run(
         cmd,
         input=input_str.encode(),

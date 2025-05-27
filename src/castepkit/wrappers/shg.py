@@ -68,12 +68,12 @@ def run_shg(
     input_str = "\n".join(str(x) for x in input_lines) + "\n"
 
     # Run the executable
-    stdout, stderr = run_program("NewSHG_ZY-XTIPC.x", input_str, [prefix])
+    stdout, stderr = run_program("shg", input_str, [prefix])
 
-    print("=== SHG STDOUT ===")
+    # print("=== SHG STDOUT ===")
     print(stdout)
     if stderr:
-        print("=== SHG STDERR ===")
+        # print("=== SHG STDERR ===")
         print(stderr)
 
     # Check expected outputs (optional TODO list)

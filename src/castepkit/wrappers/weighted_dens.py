@@ -14,11 +14,11 @@ def run_weighted_den(prefix: str, weight_file: str, suffix: str, output_format: 
     check_files_exist([weight_file], label=f"input weight file ({suffix})")
     Path(f"{prefix}.wden_in").write_text(weight_file)
 
-    stdout, stderr = run_program("weighted_den.x", f"{output_format}\n", [prefix])
-    print(f"[weighted_den.x STDOUT ({suffix})]")
+    stdout, stderr = run_program("weighted_den", f"{output_format}\n", [prefix])
+    # print(f"[weighted_den.x STDOUT ({suffix})]")
     print(stdout)
     if stderr:
-        print(f"[weighted_den.x STDERR ({suffix})]")
+        # print(f"[weighted_den.x STDERR ({suffix})]")
         print(stderr)
 
     ext_map = {1: "pot", 2: "check", 3: "grd"}
