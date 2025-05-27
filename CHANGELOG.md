@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [0.0.4] - 2025-05-27
+
+### Fixed
+
+- Change the default value of `band-resolved` from `on` (1) to `off` (0) in `castepkit-shg`.
+
+
 ## [0.0.3] - 2025-05-27
 
 ### Fixed

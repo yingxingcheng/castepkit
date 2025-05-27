@@ -103,7 +103,7 @@ def main():
         "--band_resolved",
         type=int,
         choices=[0, 1],
-        default=1,
+        default=0,
         help="Band resolved analysis: 0=off, 1=on (default: %(default)s)",
     )
     parser.add_argument(

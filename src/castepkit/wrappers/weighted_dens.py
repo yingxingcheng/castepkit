@@ -85,13 +85,14 @@ def main():
         default=0.0,
         help="Scissors correction in eV (default: %(default)s)",
     )
-    p_shg.add_argument(
-        "--band_resolved",
-        type=int,
-        choices=[0, 1],
-        default=1,
-        help="Band resolved analysis: 0=off, 1=on (default: %(default)s)",
-    )
+    # For shg density calculations, band_resolved should be always on.
+    # p_shg.add_argument(
+    #     "--band_resolved",
+    #     type=int,
+    #     choices=[0, 1],
+    #     default=1,
+    #     help="Band resolved analysis: 0=off, 1=on (default: %(default)s)",
+    # )
     p_shg.add_argument(
         "--rank_number",
         type=int,
@@ -153,7 +154,7 @@ def main():
             prefix=args.prefix,
             scissors=args.scissors,
             direction=args.direction,
-            band_resolved=args.band_resolved,
+            band_resolved=1,
             rank_number=args.rank_number,
             unit=args.unit,
             output_level=args.output_level,
