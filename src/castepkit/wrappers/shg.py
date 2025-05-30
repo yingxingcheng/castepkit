@@ -46,7 +46,8 @@ def run_shg(
     required_inputs = [
         f"{prefix}.bands",
         f"{prefix}.cell",
-        f"{prefix}.ome_bin",
+        # TODO: cst_ome is also okay
+        # f"{prefix}.ome_bin",
         # TODO: here we may also need element pseudopotential files
         # f"As_00.recpot",
         # f"Ga_00.recpot",

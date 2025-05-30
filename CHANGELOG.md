@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [0.0.7] - 2025-05-30
+
+### Fixed
+
+- The `ome_bin` not strictly required inputs for `shg`, and `cst_ome` is also fine.
+
+
 ## [0.0.6] - 2025-05-27
 
 ### Added
