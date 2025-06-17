@@ -1,4 +1,5 @@
 import os
+import shutil
 from pathlib import Path
 
 import toml
@@ -16,9 +17,20 @@ def load_config():
 
 
 def get_exec_path(name: str) -> str:
-    """Get path to external executable."""
+    """Return path to external executable or a bundled dummy."""
     config = load_config()
-    return config.get("executables", {}).get(name, name)
+    path = config.get("executables", {}).get(name, name)
+
+    # Use configured path if it exists or is on PATH
+    if Path(path).is_file() or shutil.which(path):
+        return path
+
+    # Fall back to bundled dummy script
+    dummy = Path(__file__).parent / "dummy_bin" / f"{name}.py"
+    if dummy.is_file():
+        return str(dummy)
+
+    return path
 
 
 def use_mpi() -> bool:
