@@ -22,6 +22,11 @@ def main() -> None:
     parser.add_argument("--orbital_suffix", default=None)
     args = parser.parse_args()
 
+    print(
+        "Dummy ome executable. You will be asked for the orbital file suffix. "
+        "Press Enter to accept the default shown in brackets."
+    )
+
     suffix = ask_input(
         "Orbital file suffix: ",
         default="cutatom_check",

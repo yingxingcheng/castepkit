@@ -31,6 +31,11 @@ def main() -> None:
     parser.add_argument("--energy_range", type=int, choices=[0, 1, 2], default=None)
     args = parser.parse_args()
 
+    print(
+        "Dummy SHG executable. You will be prompted for several parameters. "
+        "Press Enter at any prompt to accept the displayed default value."
+    )
+
     scissors = ask_input("Scissors: ", 0.0, args.scissors)
     direction = ask_input("Direction: ", "123", args.direction)
     band_resolved = ask_input("Band resolved (0/1): ", 0, args.band_resolved)
