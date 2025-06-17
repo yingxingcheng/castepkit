@@ -30,6 +30,7 @@ classifiers = [
 dependencies = [
     "toml",            # for config file loading
     "platformdirs",    # for OS-specific config paths
+    "castep_outputs",
 ]
 dynamic = ['version']
 
