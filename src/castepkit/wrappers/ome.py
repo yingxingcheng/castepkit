@@ -23,6 +23,7 @@ def run_ome(
         f"{prefix}.cell",
         f"{prefix}.param",
         f"{prefix}.{orbital_suffix}",
+        # TODO: use castep_outputs to read .cell file and get the potential files below
         # "Ga_00.recpot",
         # "As_00.recpot",
     ]
