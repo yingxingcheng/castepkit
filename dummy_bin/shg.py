@@ -36,14 +36,14 @@ def main() -> None:
         "Press Enter at any prompt to accept the displayed default value."
     )
 
-    scissors = ask_input("Scissors: ", 0.0, args.scissors)
+    _ = ask_input("Scissors: ", 0.0, args.scissors)
     direction = ask_input("Direction: ", "123", args.direction)
     band_resolved = ask_input("Band resolved (0/1): ", 0, args.band_resolved)
-    rank_number = ask_input("Rank number: ", 0, args.rank_number)
-    unit = ask_input("Unit (0=pm/V,1=esu): ", 0, args.unit)
-    output_level = ask_input("Output level (0/1): ", 0, args.output_level)
-    is_metal = ask_input("Is metal (1/2): ", 2, args.is_metal)
-    energy_range = ask_input("Energy range (0/1/2): ", 0, args.energy_range)
+    _ = ask_input("Rank number: ", 0, args.rank_number)
+    _ = ask_input("Unit (0=pm/V,1=esu): ", 0, args.unit)
+    _ = ask_input("Output level (0/1): ", 0, args.output_level)
+    _ = ask_input("Is metal (1/2): ", 2, args.is_metal)
+    _ = ask_input("Energy range (0/1/2): ", 0, args.energy_range)
 
     prefix = args.prefix
 

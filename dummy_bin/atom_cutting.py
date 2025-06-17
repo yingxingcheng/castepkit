@@ -27,7 +27,7 @@ def main() -> None:
         "input type. Press Enter to accept the default shown in brackets."
     )
 
-    input_type = ask_input(
+    _ = ask_input(
         "Input type (1=charge, 2=orbitals): ",
         default=2,
         cli_value=args.input_type,

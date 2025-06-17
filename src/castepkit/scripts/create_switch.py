@@ -11,15 +11,27 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from castepkit.switch import create_switch_file
+import re
 
 
-def _parse_assignments(values: list[str]) -> dict[str, str]:
-    result: dict[str, str] = {}
+def _parse_key(key: str):
+    match = re.match(r"^([A-Za-z]+)(?:\[(\d+)\]|:(\d+))?$", key)
+    if match:
+        element = match.group(1)
+        idx = match.group(2) or match.group(3)
+        if idx is not None:
+            return (element, int(idx))
+        return element
+    return key
+
+
+def _parse_assignments(values: list[str]) -> dict:
+    result: dict = {}
     for item in values:
         if "=" not in item:
             raise argparse.ArgumentTypeError("Expected NAME=VALUE")
         key, val = item.split("=", 1)
-        result[key] = val
+        result[_parse_key(key)] = val
     return result
 
 
