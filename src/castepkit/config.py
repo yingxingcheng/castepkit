@@ -71,7 +71,7 @@ def get_exec_path(name: str) -> str:
             else:
                 final_path = path
 
-    if name in {"weighted_den"} and "dummy_bin" not in str(final_path):
+    if name in {"ome", "cut"} and "dummy_bin" not in str(final_path):
         _check_required_modules()
 
     return final_path
