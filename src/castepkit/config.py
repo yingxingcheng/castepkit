@@ -25,10 +25,15 @@ def get_exec_path(name: str) -> str:
     if Path(path).is_file() or shutil.which(path):
         return path
 
-    # Fall back to bundled dummy script
+    # Fall back to bundled dummy script within the package
     dummy = Path(__file__).parent / "dummy_bin" / f"{name}.py"
     if dummy.is_file():
         return str(dummy)
+
+    # Also check for a repository-level dummy program (for tests)
+    repo_dummy = Path(__file__).resolve().parents[2] / "dummy_bin" / f"{name}.py"
+    if repo_dummy.is_file():
+        return str(repo_dummy)
 
     return path
 

@@ -1,6 +1,8 @@
 from pathlib import Path
 
 import pytest
+from castepkit.config import get_exec_path
+
 from common import prepare_test_data
 
 # from castepkit.wrappers.atom_cutting import run_atom_cutting
@@ -46,6 +48,10 @@ def tmp_gaas_optics(tmp_path):
     ],
 )
 def test_run_shg_direction(direction, tmp_gaas_optics, monkeypatch):
+    exe = Path(get_exec_path("shg"))
+    if exe.suffix != ".py":
+        pytest.skip("Real shg executable configured; skipping wrapper test")
+
     monkeypatch.chdir(tmp_gaas_optics)
     run_shg(
         prefix="GaAs_Optics",
@@ -63,6 +69,10 @@ def test_run_shg_direction(direction, tmp_gaas_optics, monkeypatch):
 
 
 def test_run_shg_all(tmp_gaas_optics, monkeypatch):
+    exe = Path(get_exec_path("shg"))
+    if exe.suffix != ".py":
+        pytest.skip("Real shg executable configured; skipping wrapper test")
+
     monkeypatch.chdir(tmp_gaas_optics)
     run_shg(
         prefix="GaAs_Optics",
@@ -80,6 +90,14 @@ def test_run_shg_all(tmp_gaas_optics, monkeypatch):
 
 
 def test_run_weighted_den(tmp_gaas_optics, monkeypatch):
+    exe = Path(get_exec_path("shg"))
+    if exe.suffix != ".py":
+        pytest.skip("Real shg executable configured; skipping wrapper test")
+
+    exe_w = Path(get_exec_path("weighted_den"))
+    if exe_w.suffix != ".py":
+        pytest.skip("Real weighted_den executable configured; skipping wrapper test")
+
     monkeypatch.chdir(tmp_gaas_optics)
     run_shg(
         prefix="GaAs_Optics",
