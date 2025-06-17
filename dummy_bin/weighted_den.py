@@ -22,6 +22,12 @@ def main() -> None:
     parser.add_argument("--output_format", type=int, choices=[1, 2, 3], default=None)
     args = parser.parse_args()
 
+    print(
+        "Dummy weighted_den.x executable. You will be prompted for the output "
+        "file format. Enter 1 for .pot, 2 for .check, or 3 for .grd. Press "
+        "Enter to accept the default."
+    )
+
     fmt = ask_input(
         "Output format (1=pot,2=check,3=grd): ",
         default=3,

@@ -22,6 +22,11 @@ def main() -> None:
     parser.add_argument("--input_type", type=int, choices=[1, 2], default=None)
     args = parser.parse_args()
 
+    print(
+        "Dummy atom_cutting executable. You will be asked for the wavefunction "
+        "input type. Press Enter to accept the default shown in brackets."
+    )
+
     input_type = ask_input(
         "Input type (1=charge, 2=orbitals): ",
         default=2,
