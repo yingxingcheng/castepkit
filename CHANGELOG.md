@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [0.0.8] - 2025-06-17
+
+### Fixed
+
+- Add `castepkit-switch` to create *.switch file for `castepkit-cut`
+- Add dummy programs to test.
+
 ## [0.0.7] - 2025-05-30
 
 ### Fixed
