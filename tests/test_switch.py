@@ -39,6 +39,19 @@ def test_create_switch_file(tmp_gaas):
     assert out.read_text().strip().splitlines() == expected
 
 
+def test_create_switch_defaults(tmp_gaas):
+    cell = tmp_gaas / "GaAs_Optics.cell"
+    radius = {"Ga": 0.79}
+    cut = {"As": "cut"}
+    out = create_switch_file(cell, radius, cut)
+    lines = out.read_text().strip().splitlines()
+    from castepkit.switch import DEFAULT_RADII
+    assert "Ga 0.79d0" in lines
+    assert f"As {DEFAULT_RADII['As']}d0" in lines
+    assert "Ga      keep 2" in lines
+    assert "As      cut 2" in lines
+
+
 def test_switch_cli(tmp_gaas):
     cell = tmp_gaas / "GaAs_Optics.cell"
     script = Path(__file__).resolve().parents[1] / "src" / "castepkit" / "scripts" / "create_switch.py"
@@ -54,6 +67,22 @@ def test_switch_cli(tmp_gaas):
         "Ga=keep",
         "--cut",
         "As=cut",
+    ]
+    subprocess.run(cmd, check=True)
+    assert (tmp_gaas / "GaAs_Optics.switch").is_file()
+
+
+def test_switch_cli_index(tmp_gaas):
+    cell = tmp_gaas / "GaAs_Optics.cell"
+    script = Path(__file__).resolve().parents[1] / "src" / "castepkit" / "scripts" / "create_switch.py"
+    cmd = [
+        sys.executable,
+        str(script),
+        str(cell),
+        "--radius",
+        "Ga[1]=0.79",
+        "--cut",
+        "As[1]=cut",
     ]
     subprocess.run(cmd, check=True)
     assert (tmp_gaas / "GaAs_Optics.switch").is_file()

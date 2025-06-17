@@ -27,7 +27,7 @@ def main() -> None:
         "Press Enter to accept the default shown in brackets."
     )
 
-    suffix = ask_input(
+    _ = ask_input(
         "Orbital file suffix: ",
         default="cutatom_check",
         cli_value=args.orbital_suffix,
