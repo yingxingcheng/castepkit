@@ -1,6 +1,5 @@
 import os
 import shutil
-import subprocess
 from pathlib import Path
 
 import toml
@@ -27,19 +26,18 @@ def _check_required_modules() -> None:
         return
     _MODULES_CHECKED = True
 
-    try:
-        for mod in _MODULES:
-            result = subprocess.run(
-                ["module", "is-loaded", mod],
-                capture_output=True,
-                text=True,
-            )
-            if result.returncode != 0:
-                raise RuntimeError
-    except FileNotFoundError:
-        print("WARNING: 'module' command not found. Unable to verify loaded modules.")
-    except RuntimeError:
-        mods = " ".join(_MODULES)
+    loaded = os.environ.get("LOADEDMODULES")
+    if not loaded:
+        print(
+            "WARNING: LOADEDMODULES environment variable not set. "
+            "Unable to verify loaded modules."
+        )
+        return
+
+    loaded_set = set(filter(None, loaded.split(":")))
+    missing = [m for m in _MODULES if m not in loaded_set]
+    if missing:
+        mods = " ".join(missing)
         print(
             f"WARNING: Required modules not loaded: {mods}.\n"
             "Please run 'module load " + mods + "' before using castepkit-cut or castepkit-dens."
