@@ -1,41 +1,79 @@
+from __future__ import annotations
+
+from pathlib import Path
+
 from castep_outputs import parse_cell_param_file
 
+__all__ = ["create_switch_file"]
 
-def create_switch_file(fn_cell, radius_dict, cut_dict):
+
+def _lookup(key, mapping):
+    if key in mapping:
+        return mapping[key]
+    if isinstance(key, tuple) and key[0] in mapping:
+        return mapping[key[0]]
+    raise KeyError(f"Missing entry for {key}")
+
+
+def create_switch_file(
+    fn_cell: str | Path,
+    radius_dict: dict,
+    cut_dict: dict,
+    *,
+    fn_switch: str | Path | None = None,
+) -> Path:
+    """Create a ``.switch`` file for ``atom_cutting``.
+
+    Parameters
+    ----------
+    fn_cell : str or Path
+        Path to the CASTEP ``.cell`` file.
+    radius_dict : dict
+        Mapping from atom label to cutting radius in angstrom.
+        Keys can be element symbols (e.g. ``"Ga"``) or tuples like
+        ``("Ga", 1)`` matching the ``positions_frac`` keys returned by
+        :func:`castep_outputs.parse_cell_param_file`.
+    cut_dict : dict
+        Mapping from atom label to the action ``"keep"`` or ``"cut"``.
+    fn_switch : str or Path, optional
+        Output file name. Defaults to ``<prefix>.switch`` where ``prefix`` is
+        derived from ``fn_cell``.
+
+    Returns
+    -------
+    Path
+        Path to the created switch file.
     """
-    Create a PREFIX.switch file for `cutting_atom` script inluding, e.g.,
+    fn_cell = Path(fn_cell)
+    if fn_switch is None:
+        fn_switch = fn_cell.with_suffix(".switch")
+    fn_switch = Path(fn_switch)
 
-    ```
-    %BLOCK ATOM_DOMAIN
-     Ga 0.79d0
-     As 0.79d0
-    %ENDBLOCK ATOM_DOMAIN
+    with fn_cell.open() as f:
+        data = parse_cell_param_file(f)[0]
 
-    %BLOCK CUT_ATOM
-    Ga      keep 2
-    As      cut 2
-    %ENDBLOCK CUT_ATOM
-    ```
+    atoms = list(data.get("positions_frac", {}).keys())
 
-    where the atom_domain block include the cutting radius for each atom.
-    The cut_atom block specify which one is kept and cutted.
+    lines = ["%BLOCK ATOM_DOMAIN"]
+    for atom in atoms:
+        element = atom[0] if isinstance(atom, tuple) else atom
+        radius = _lookup(atom, radius_dict)
+        radius_str = str(radius)
+        if isinstance(radius, (int, float)):
+            radius_str = f"{radius}d0"
+        elif not radius_str.lower().endswith("d0"):
+            radius_str += "d0"
+        lines.append(f"{element} {radius_str}")
+    lines.append("%ENDBLOCK ATOM_DOMAIN")
+    lines.append("")
+    lines.append("%BLOCK CUT_ATOM")
+    for atom in atoms:
+        element = atom[0] if isinstance(atom, tuple) else atom
+        action = _lookup(atom, cut_dict)
+        if isinstance(action, bool) or isinstance(action, int):
+            action = "keep" if bool(action) else "cut"
+        lines.append(f"{element}      {action} 2")
+    lines.append("%ENDBLOCK CUT_ATOM")
 
-    The atom info should be readed from .cell file by using `castep_outputs` package.
-    The order and number of atoms should be the same as .cell file.
-
-    The number aster keep or cut is the type of cutting. The default is 2. It could be other numbers, but we
-    don't know what is the meaning of them.
-
-    d0 is mandatory and it refers to the unit.
-    The unit for this radius is angstrom.
-
-    The radius_dict and cut_dict should including all info.
-    For a strucutre with multiple atoms with the same type, we can use ('Ga', 1) index liek in
-    in the data from castep_outputs package.
-
-    """
-
-    data = parse_cell_param_file(fn_cell)[0]
-    print(data)
-
-    # TODO
+    fn_switch.write_text("\n".join(lines) + "\n")
+    return fn_switch
