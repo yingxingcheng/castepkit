@@ -87,6 +87,18 @@ castepkit-dens shg GaAs_Optics --scissors 0.8 --direction 111
 
 ---
 
+When running the real executables for `castepkit-cut` and `castepkit-dens`, the
+Intel compiler and MPI modules must be loaded:
+
+```bash
+module load compiler/intel/2021.3.0 mpi/intelmpi/2021.3.0
+```
+
+The configuration loader checks for these modules and prints a warning if they
+are missing.
+
+---
+
 ## License
 
 `castepkit` is distributed under the terms of the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html).
